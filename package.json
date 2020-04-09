@@ -2,6 +2,10 @@
   "name": "multiplayergame",
   "version": "1.0.0",
   "description": "mutiplayer game using websockets",
+  "engines": {
+  "node": "10.15.3",
+  "npm": "6.4.1"
+  },
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
