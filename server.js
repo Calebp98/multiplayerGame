@@ -7,6 +7,10 @@ var app = express();
 var server = http.Server(app);
 var io = socketIO(server);
 
+
+// var port_number = server.listen(process.env.PORT || 3000);
+// app.listen(port_number);
+
 app.set( 'port', ( process.env.PORT || 5000 ));
 app.use('/static', express.static(__dirname + '/static'));
 
@@ -16,8 +20,8 @@ app.get('/', function(request,response) {
 });
 
 //starts the server
-server.listen(5000, function() {
-	console.log('Starting server on port 5000');
+server.listen(app.get('port'), function() {
+	console.log('Starting server on port 3000');
 });
 
 
