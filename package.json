@@ -6,6 +6,10 @@
     "node": "10.15.3",
     "npm": "6.4.1"
   },
+  "repository": {
+    "type": "git",
+    "url": " https://github.com/Calebp98/multiplayerGame"
+  },
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -14,7 +18,13 @@
   "author": "caleb parikh",
   "license": "ISC",
   "dependencies": {
+    "bootstrap": "^4.4.1",
+    "bufferutil": "^4.0.1",
     "express": "^4.17.1",
-    "socket.io": "^2.3.0"
+    "jquery": "^3.5.0",
+    "popper": "^1.0.1",
+    "popper.js": "^1.16.1",
+    "socket.io": "^2.3.0",
+    "utf-8-validate": "^5.0.2"
   }
 }

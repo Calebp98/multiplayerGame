@@ -11,6 +11,10 @@
     }
   </style>
   <script src="/socket.io/socket.io.js"></script>
+
+  <!-- css -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
 </head>
 
 <body>
@@ -21,6 +25,18 @@
   <p id="collision"></p>
   <h3>Target</h3>
   <p id="target"></p>
+
+  <div class="d-flex justify-content-center">
+    <button onmousedown="moveup()" onmouseup="stop()" class="btn btn-primary">UP</button>
+  </div>
+  <br>
+  <div class="d-flex justify-content-center mx-2 mx-md-n5">
+    <button onmousedown="moveleft()" onmouseup="stop()" class="btn btn-primary">LEFT</button>
+    <button onmousedown="moveright()" onmouseup="stop()" class="btn btn-primary">RIGHT</button>
+  </div>
+  <div class="d-flex justify-content-center">
+    <button onmousedown="movedown()" onmouseup="stop()" class="btn btn-primary">DOWN</button>
+  </div>
 </body>
 <script src="/static/game.js"></script>
 

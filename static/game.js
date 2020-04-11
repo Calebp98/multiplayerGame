@@ -60,6 +60,30 @@ document.addEventListener('keyup', function(event) {
   }
 });
 
+
+function moveup() {
+  movement.up = true;
+}
+
+function movedown() {
+  movement.down = true;
+}
+
+function moveleft() {
+  movement.left = true;
+}
+
+function moveright() {
+  movement.right = true;
+}
+
+function stop(){
+  movement.left = false;
+  movement.up = false;
+  movement.right = false;
+  movement.down = false;
+}
+
 socket.emit('new player');
 
 setInterval(function(){
