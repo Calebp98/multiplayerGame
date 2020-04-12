@@ -38,7 +38,7 @@ io.on('connection', function(socket) {
 // 	io.sockets.emit('message2','hi friend!');
 // }, 10000);
 
-var colorArray = ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6',
+var colorArray = ['#FF6633', '#FF33FF', '#FFFF99', '#00B3E6',
 		  '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D',
 		  '#80B300', '#809900', '#E6B3B3', '#6680B3', '#66991A',
 		  '#FF99E6', '#CCFF1A', '#FF1A66', '#E6331A', '#33FFCC',
@@ -85,6 +85,8 @@ io.on('connection', function(socket) {
 
 setInterval(function() {
 	io.sockets.emit('state', players);
+	// clean up disconnections
+	players = clean(players);
 
 	for (var id in players){
 		var player = players[id]
@@ -125,19 +127,22 @@ function updateCollisions(){
 function assignTargets(){
 	var targets = Object.keys(players);
 	var ids =  Object.keys(players);
-	while ((Object.keys(players).length>1 )&& (JSON.stringify(targets) == JSON.stringify(ids))){
+	while ((Object.keys(players).length>1 ) && (JSON.stringify(targets) == JSON.stringify(ids))){
 		shuffle(targets);
 	}
 
-	console.log(Object.keys(players),':',targets)
+	// check for cyclic targets
+
+
+	// console.log(Object.keys(players),':',targets)
 	for (var id in players ){
 		var player = players[id];
 	}
 	let i = 0;
 	for (var id in players ){
 		players[id].target = targets[i]
-		console.log(players[id].target)
-		console.log(targets[i])
+		// console.log(players[id].target)
+		// console.log(targets[i])
 		i++;
 	}
 }
@@ -158,12 +163,21 @@ var shuffle = function (array) {
 		array[currentIndex] = array[randomIndex];
 		array[randomIndex] = temporaryValue;
 	}
-
 	return array;
-
 };
 
+var clean = function(players) {
+	nPlayers = {}
+	for (var id in players){
+		if (Object.keys(io.sockets.connected).includes(id)){
+			nPlayers[id] = players[id];
+		}
+	}
+	return nPlayers;
+}
 
-
+// debug loop
+setInterval(function() {
+}, 5000);
 
 //

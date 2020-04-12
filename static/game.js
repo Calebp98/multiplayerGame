@@ -8,6 +8,9 @@ implement points system
 */
 
 
+
+
+
 var socket = io();
 // socket.on('message', function(data) {
 //   console.log(data);
@@ -88,6 +91,7 @@ socket.emit('new player');
 
 setInterval(function(){
   socket.emit('movement',movement);
+
 }, 1000 / 60);
 
 
@@ -99,6 +103,8 @@ canvas.height = 600;
 var context = canvas.getContext('2d');
 var points = document.getElementById('points'); //for displaying points
 socket.on('state', function(players) {
+  // var joystick = new VirtualJoystick()
+
   context.clearRect(0,0,800,600);
 
   for (var id in players) {
@@ -109,7 +115,7 @@ socket.on('state', function(players) {
     context.fill();
   }
   updateStats(players)
-  console.log(players)
+  // console.log(players)
 });
 
 function updateStats(players){
@@ -123,5 +129,12 @@ function updateStats(players){
     var collision = document.getElementById('target');
     collision.innerHTML = user.target;
     collision.style.color = players[user.target].color;
+    var avoid = document.getElementById('avoid');
+
+    userToAvoid = Object.keys(players).find(a => {return players[a].target == socket.id})
+    avoid.innerHTML = userToAvoid;
+    avoid.style.color = players[userToAvoid].color;
+    // console.log(userToAvoid)
+
   }
 }
