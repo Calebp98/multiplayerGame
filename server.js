@@ -12,11 +12,16 @@ var io = socketIO(server);
 // app.listen(port_number);
 
 app.set( 'port', ( process.env.PORT || 3000 ));
+app.set('view engine', 'pug');
 app.use('/static', express.static(__dirname + '/static'));
 
 //routing
 app.get('/', function(request,response) {
 	response.sendFile(path.join(__dirname, 'index.html'));
+});
+
+app.get('/console', function(request,response) {
+	response.sendFile(path.join(__dirname, 'console.html'));
 });
 
 //starts the server
@@ -38,7 +43,7 @@ io.on('connection', function(socket) {
 // 	io.sockets.emit('message2','hi friend!');
 // }, 10000);
 
-var colorArray = ['#FF6633', '#FF33FF', '#FFFF99', '#00B3E6',
+var colorArray = ['#FF6633', '#FF33FF', '#00B3E6',
 		  '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D',
 		  '#80B300', '#809900', '#E6B3B3', '#6680B3', '#66991A',
 		  '#FF99E6', '#CCFF1A', '#FF1A66', '#E6331A', '#33FFCC',
@@ -127,12 +132,14 @@ function updateCollisions(){
 function assignTargets(){
 	var targets = Object.keys(players);
 	var ids =  Object.keys(players);
-	while ((Object.keys(players).length>1 ) && (JSON.stringify(targets) == JSON.stringify(ids))){
+	// while ((Object.keys(players).length>1 ) && (JSON.stringify(targets) == JSON.stringify(ids))){
+	while ((ids.length>1 ) && (checkDiff(ids,targets)==false)) {
 		shuffle(targets);
 	}
-
+	console.log('target :', targets)
+	console.log('player :', ids)
+	// console.log(checkDiff(targets,ids))
 	// check for cyclic targets
-
 
 	// console.log(Object.keys(players),':',targets)
 	for (var id in players ){
@@ -145,6 +152,18 @@ function assignTargets(){
 		// console.log(targets[i])
 		i++;
 	}
+}
+
+function checkDiff(arr1, arr2){
+	console.log(arr1)
+	for (var x in arr1){
+		if (arr1[x]==arr2[x]){
+			console.log('failed')
+			console.log(arr1[x],":",arr2[x])
+			return false;
+		}
+	}
+	return true;
 }
 
 var shuffle = function (array) {

@@ -3,8 +3,8 @@ console.log("touchscreen is", VirtualJoystick.touchScreenAvailable() ? "availabl
 var joystick = new VirtualJoystick({
   mouseSupport	: true,
   stationaryBase	: true,
-  baseX		: 500,
-  baseY		: 800
+  baseX		: 300,
+  baseY		: 500
 });
 joystick.addEventListener('touchStart', function() {
   console.log('down')
