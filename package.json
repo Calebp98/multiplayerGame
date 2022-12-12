@@ -20,7 +20,7 @@
   "dependencies": {
     "bootstrap": "^4.4.1",
     "bufferutil": "^4.0.1",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "game-controller": "0.0.1",
     "jquery": "^3.5.0",
     "popper": "^1.0.1",
